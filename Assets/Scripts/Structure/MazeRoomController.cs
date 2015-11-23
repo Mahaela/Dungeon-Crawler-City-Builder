@@ -19,9 +19,11 @@ public class MazeRoomController : MonoBehaviour {
 
 	}
 	// Update is called once per frame
-	void Update () {
+	//void Update () {
 		
-	}
+	//}
+
+	//called whenever an enemy created by this controller dies.
 	public void dead()
 	{
 		enemyCount--;
@@ -37,15 +39,22 @@ public class MazeRoomController : MonoBehaviour {
 			}
 		}
 	}
+
+	//SPAWN THE ENEMIES GDAMMIT
+	//but only when shadowController calls it
 	public void spawn()
 	{
-		for(int i = 0; i < enemies.Length; i++)
+		for(int i = 0; i < enemies.Length; i++) //loop through enemy array
 		{
-			float x = Random.Range(2f, 8f);
+			//random location in the maze room 
+			float x = Random.Range(2f, 8f); 
 			float y = Random.Range(2f, 8f);
 			Vector3 spawnPoint = transform.position + new Vector3(x, y, 0);
+
+			//set this enemy to enemy mazeroom to this one
 			enemies[i].GetComponent<EnemyHealth>().MazeRoom = this;
 
+			//make the enemy
 			Instantiate(enemies[i], spawnPoint, Quaternion.identity);
 
 		}
