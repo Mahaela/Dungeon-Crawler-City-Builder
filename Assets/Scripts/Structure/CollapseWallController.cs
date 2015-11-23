@@ -2,7 +2,12 @@
 using System.Collections;
 
 public class CollapseWallController : MonoBehaviour {
-	
+
+
+	/* DEPRECATED  DEPRECATED  DEPRECATED
+	 * DEPRECATED  DEPRECATED  DEPRECATED
+	 * DEPRECATED  DEPRECATED  DEPRECATED
+	 */
 
 	// Use this for initialization
 	void Start () {
@@ -13,8 +18,9 @@ public class CollapseWallController : MonoBehaviour {
 		
 	}
 
-
+	
 	void turnOff()
 	{
+
 	}
 }

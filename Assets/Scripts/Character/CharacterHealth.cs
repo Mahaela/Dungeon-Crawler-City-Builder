@@ -9,8 +9,9 @@ public class CharacterHealth : MonoBehaviour {
 	
 	double damageTimer;
 	CharacterMovement movement;
-	bool recoil;
-	// Use this for initialization
+	bool recoil; //is it in post-damage immune state
+
+
 	void Start () {
 		damageTimer = 0f;
 		recoil = false;
@@ -20,7 +21,7 @@ public class CharacterHealth : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		if (recoil) {
+		if (recoil) { //dont take damage, just count time
 			damageTimer += Time.deltaTime;
 			if(damageTimer >= recoilTime)
 			{
@@ -34,16 +35,16 @@ public class CharacterHealth : MonoBehaviour {
 		if (!recoil) {
 			health -= dmg;
 			recoil = true;
-			movement.getHit(direction);
+			movement.getHit(direction); //call player's movement script for knockback
 			Debug.Log("Character Health = " + health);
-			checkDeath ();
+			checkDeath (); //has I died
 		}
 	}
 	
 	void checkDeath()
 	{
 		if (health <= 0) {
-			Destroy(gameObject);		
+			Destroy(gameObject);	//game breaks	
 		}
 	}
 }
