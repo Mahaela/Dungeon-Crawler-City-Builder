@@ -53,7 +53,7 @@ public class Drag : MonoBehaviour {
     {
         if(dragging)
         {
-            if()
+            
         }
         dragging = false;
 
