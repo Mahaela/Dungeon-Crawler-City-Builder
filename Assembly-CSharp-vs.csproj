@@ -62,6 +62,7 @@
      <Compile Include="Assets\Scripts\Inventory\SaveLoad.cs" />
      <Compile Include="Assets\Scripts\Inventory\Weapon.cs" />
      <Compile Include="Assets\Scripts\Structure\CollapseWallController.cs" />
+     <Compile Include="Assets\Scripts\Structure\Key.cs" />
      <Compile Include="Assets\Scripts\Structure\MazeRoomController.cs" />
      <Compile Include="Assets\Scripts\Structure\RoomShadowController.cs" />
  <Reference Include="UnityEngine.UI">
