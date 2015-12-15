@@ -1,14 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.EventSystems;
+using System;
 
-public class Drag : MonoBehaviour {
+public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler{
 
     //GUIElement guiIcon;
 
-    GameObject dragCopy;
-    Vector3 prevMousePos;
-    private static bool dragging = false;
-    private static GameObject grabbedObject;
+
+    Vector3 startPos;
+    public static GameObject grabbedObject;
+    Transform startParent;
 
 
 	// Use this for initialization
@@ -25,7 +27,7 @@ public class Drag : MonoBehaviour {
 	void Update () {
 	    
 	}
-
+    /*
     void OnMouseDown()
     {
         dragging = true;
@@ -59,5 +61,27 @@ public class Drag : MonoBehaviour {
 
 
     }
+    */
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        startPos = transform.position;
+        grabbedObject = gameObject;
+        startParent = transform.parent;
+        GetComponent<CanvasGroup>().blocksRaycasts = false;
+    }
 
+    public void OnDrag(PointerEventData eventData)
+    {
+        transform.position = Input.mousePosition;
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        grabbedObject = null;
+        if (transform.parent == startParent)
+        {
+            transform.position = startPos;
+        }
+        GetComponent<CanvasGroup>().blocksRaycasts = true;
+    }
 }

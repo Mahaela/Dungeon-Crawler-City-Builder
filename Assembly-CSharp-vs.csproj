@@ -60,6 +60,7 @@
      <Compile Include="Assets\Scripts\Inventory\ItemTable.cs" />
      <Compile Include="Assets\Scripts\Inventory\PlayerPerfsX.cs" />
      <Compile Include="Assets\Scripts\Inventory\SaveLoad.cs" />
+     <Compile Include="Assets\Scripts\Inventory\Slot.cs" />
      <Compile Include="Assets\Scripts\Inventory\Weapon.cs" />
      <Compile Include="Assets\Scripts\Structure\CollapseWallController.cs" />
      <Compile Include="Assets\Scripts\Structure\Key.cs" />
