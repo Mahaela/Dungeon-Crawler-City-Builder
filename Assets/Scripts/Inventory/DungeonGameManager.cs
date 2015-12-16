@@ -15,7 +15,14 @@ public class DungeonGameManager : MonoBehaviour {
         temp.Add(1);
         temp.Add(0);
         temp.Add(2);
-        
+        temp.Add(3);
+        temp.Add(1);
+        temp.Add(4);
+        temp.Add(3);
+        temp.Add(5);
+        temp.Add(3);
+        temp.Add(4);
+        temp.Add(6);
 
         SaveLoad.Instance.SetInvArray(temp);
 	}

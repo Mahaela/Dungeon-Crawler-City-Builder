@@ -4,6 +4,11 @@ using UnityEngine.EventSystems;
 using System;
 
 public class Slot : MonoBehaviour, IDropHandler {
+
+    enum types {non, head, body, hand, foot, weapon};
+
+    public int slotType;
+
     public GameObject item
     {
         get
@@ -20,8 +25,21 @@ public class Slot : MonoBehaviour, IDropHandler {
     {
         if(!item)
         {
-            Drag.grabbedObject.transform.SetParent(transform);
-            ExecuteEvents.ExecuteHierarchy<IHasChanged>(gameObject, null, (x, y) => x.HasChanged());
+            if(slotType == 0 || slotType == Drag.grabbedObject.GetComponent<Item>().type)
+            {
+                Drag.grabbedObject.transform.SetParent(transform);
+                ExecuteEvents.ExecuteHierarchy<IHasChanged>(gameObject, null, (x, y) => x.HasChanged());
+            }
+            
+        }
+        else
+        {
+            if (slotType == 0 || slotType == Drag.grabbedObject.GetComponent<Item>().type)
+            {
+                transform.GetChild(0).gameObject.transform.SetParent(Drag.startParent);
+                Drag.grabbedObject.transform.SetParent(transform);
+                ExecuteEvents.ExecuteHierarchy<IHasChanged>(gameObject, null, (x, y) => x.HasChanged());
+            }
         }
     }
 

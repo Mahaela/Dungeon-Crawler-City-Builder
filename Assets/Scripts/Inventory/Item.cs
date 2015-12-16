@@ -4,6 +4,7 @@ using System.Collections;
 public class Item : MonoBehaviour {
 
     public string itemName;
+    public int type;
     //public GameObject prefab;
 
 	// Use this for initialization

@@ -2,9 +2,11 @@
 using System.Collections;
 using UnityEngine.EventSystems;
 using System;
+using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour, IHasChanged {
     [SerializeField] Transform slots; 
+    [SerializeField] Text invText;
     
 
 	// Use this for initialization
@@ -38,10 +40,34 @@ public class Inventory : MonoBehaviour, IHasChanged {
 
     public void HasChanged()
     {
-        foreach(Transform slotTransform in slots)
+        int totalDef = 0;
+        int totalAtk = 0;
+        int totalDodge = 0;
+        System.Text.StringBuilder builder = new System.Text.StringBuilder();
+        builder.Append("Current Equipment: ");
+        foreach (Transform slotTransform in slots)
         {
-
+            GameObject item = slotTransform.GetComponent<Slot>().item;
+            if(item)
+            {
+                builder.Append(item.GetComponent<Item>().itemName);
+                builder.Append(" - ");
+                if(item.GetComponent<Item>() is Armor)
+                {
+                    totalDef += item.GetComponent<Armor>().defense;
+                    totalDodge += item.GetComponent<Armor>().dodge;
+                }
+                else if(item.GetComponent<Item>() is Weapon)
+                {
+                    totalAtk += item.GetComponent<Weapon>().damage;
+                }
+            }
         }
+        builder.Append("\n");
+        builder.Append("Total Defense: " + totalDef + "\n");
+        builder.Append("Total Dodge: " + totalDodge + "\n");
+        builder.Append("Total Attack: " + totalAtk + "\n");
+        invText.text = builder.ToString();
     }
 }
 
