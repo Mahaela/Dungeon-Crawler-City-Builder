@@ -47,6 +47,9 @@ public class DungeonGameManager : MonoBehaviour {
             Debug.Log("loading");
             LevelSerializer.SaveEntry sg = LevelSerializer.SavedGames[LevelSerializer.PlayerName][0];
             LevelSerializer.LoadNow(sg.Data);
+            inventory.GetComponent<Inventory>().HasChanged();
+            
         }
+        inventory.GetComponent<Inventory>().HasChanged();//somehow this helps loading the mods in each equipment
     }
 }

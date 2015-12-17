@@ -69,7 +69,8 @@ public class Slot : MonoBehaviour, IDropHandler, IPointerClickHandler
         GameObject modPanel = GameObject.Find("ModPanel");
         foreach (Transform child in modPanel.transform)
         {
-            GameObject.Destroy(child.gameObject);
+            child.gameObject.SetActive(false);//instead of destroying
+            currentModItem = null;
         }
         //GameObject item = gameObject.GetComponent<Item>().gameObject;
         if (item && item.GetComponent<Equips>() != null)
@@ -79,14 +80,21 @@ public class Slot : MonoBehaviour, IDropHandler, IPointerClickHandler
  
             Debug.Log("is moddable");
             currentModItem = item;
+            int i = 0;
+            
             foreach (GameObject mod in item.GetComponent<Equips>().mods)
             {
                 //Load current mods
                 Debug.Log(mod);
-                    
+
                 //Display all mods in current item
+                /*
                 GameObject tempslot = (GameObject)Instantiate(Resources.Load("ModSlot"));
                 tempslot.SetParent(modPanel);
+                */
+                GameObject tempslot = modPanel.transform.GetChild(i).gameObject;
+                tempslot.SetActive(true);
+
                 if (mod)
                 {
 
@@ -99,6 +107,7 @@ public class Slot : MonoBehaviour, IDropHandler, IPointerClickHandler
                     mod.GetComponent<CanvasGroup>().blocksRaycasts = true;
                     mod.SetParent(tempslot);
                 }
+                i++;
             }
 
         }

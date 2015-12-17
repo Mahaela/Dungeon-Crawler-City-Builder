@@ -49,8 +49,11 @@ public class Inventory : MonoBehaviour, IHasChanged {
         {
             foreach (Transform slotTransform in modSlots)
             {
-
-                Slot.currentModItem.GetComponent<Equips>().mods[i] = slotTransform.GetComponent<Slot>().item;
+                if(slotTransform.gameObject.activeSelf == true)
+                {
+                    Slot.currentModItem.GetComponent<Equips>().mods[i] = slotTransform.GetComponent<Slot>().item;
+                }
+                
 
 
                 i++;
@@ -73,6 +76,28 @@ public class Inventory : MonoBehaviour, IHasChanged {
             if(item)
             {
                 builder.Append(item.name);
+
+                if(item.GetComponent<Item>() is Equips)
+                {
+                    builder.Append(" ( ");
+                    foreach (GameObject mod in item.GetComponent<Equips>().mods)
+                    {
+                        if(mod)
+                        {
+                            builder.Append(mod.name + " ");
+                            totalDef += mod.GetComponent<ItemMods>().defBoost;
+                            totalDodge += mod.GetComponent<ItemMods>().dodgeBoost;
+                            totalAtk += mod.GetComponent<ItemMods>().atkBoost;
+                        }
+                        else
+                        {
+                            builder.Append(" Empty Slot ");
+                        }
+                    }
+                    builder.Append(") ");
+
+                }
+
                 builder.Append(" - ");
                 if(item.GetComponent<Item>() is Armor)
                 {
