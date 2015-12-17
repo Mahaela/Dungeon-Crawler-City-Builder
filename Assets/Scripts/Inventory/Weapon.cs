@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Weapon : Item {
+public class Weapon : Equips {
 
     public int damage = 2;
 

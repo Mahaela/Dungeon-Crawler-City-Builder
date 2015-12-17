@@ -7,16 +7,17 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 
     //GUIElement guiIcon;
 
+    
+
 
     Vector3 startPos;
     public static GameObject grabbedObject;
     public static Transform startParent;
     Transform canvas;
 
-
-
     public void OnBeginDrag(PointerEventData eventData)
     {
+        Debug.Log("start drag");
         startPos = transform.position;
         grabbedObject = gameObject;
         startParent = transform.parent;
@@ -40,4 +41,6 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
         }
         GetComponent<CanvasGroup>().blocksRaycasts = true;
     }
+
+    
 }

@@ -7,11 +7,13 @@ using UnityEngine.UI;
 public class Inventory : MonoBehaviour, IHasChanged {
     [SerializeField] Transform slots; 
     [SerializeField] Text invText;
+    [SerializeField] Transform modSlots;
     
 
 	// Use this for initialization
 	void Start () {
         HasChanged();
+        /*
         SaveLoad.Instance.GetInvArray();
         Debug.Log("Generating Inventory");
 
@@ -21,10 +23,10 @@ public class Inventory : MonoBehaviour, IHasChanged {
             GameObject temp = Instantiate(ItemTable.Instance.getItemAtIndex(i));
             Transform slot = transform.GetChild(0).transform.GetChild(count);
             temp.transform.SetParent(slot);
-            Debug.Log(temp.GetComponent<Item>().itemName);
+            Debug.Log(temp.name);
             count++;
         }
-
+        */
     }
 
     void Awake()
@@ -40,6 +42,19 @@ public class Inventory : MonoBehaviour, IHasChanged {
 
     public void HasChanged()
     {
+        //adjust weapon mods
+        int i = 0;
+        foreach(Transform slotTransform in modSlots)
+        {
+            Slot.currentModItem.GetComponent<Equips>().mods[i] = slotTransform.GetComponent<Slot>().item;
+            i++;
+            Debug.Log(slotTransform.GetComponent<Slot>().item);
+        }
+
+
+
+
+        //calculate total bonuses
         int totalDef = 0;
         int totalAtk = 0;
         int totalDodge = 0;
@@ -50,7 +65,7 @@ public class Inventory : MonoBehaviour, IHasChanged {
             GameObject item = slotTransform.GetComponent<Slot>().item;
             if(item)
             {
-                builder.Append(item.GetComponent<Item>().itemName);
+                builder.Append(item.name);
                 builder.Append(" - ");
                 if(item.GetComponent<Item>() is Armor)
                 {

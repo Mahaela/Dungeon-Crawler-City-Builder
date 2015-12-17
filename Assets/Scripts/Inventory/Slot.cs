@@ -3,8 +3,9 @@ using System.Collections;
 using UnityEngine.EventSystems;
 using System;
 
-public class Slot : MonoBehaviour, IDropHandler {
-
+public class Slot : MonoBehaviour, IDropHandler, IPointerClickHandler
+{
+    public static GameObject currentModItem;
     enum types {non, head, body, hand, foot, weapon};
 
     public int slotType;
@@ -39,6 +40,40 @@ public class Slot : MonoBehaviour, IDropHandler {
                 transform.GetChild(0).gameObject.transform.SetParent(Drag.startParent);
                 Drag.grabbedObject.transform.SetParent(transform);
                 ExecuteEvents.ExecuteHierarchy<IHasChanged>(gameObject, null, (x, y) => x.HasChanged());
+            }
+        }
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+
+        Debug.Log("click");
+        
+        GameObject modPanel = GameObject.Find("ModPanel");
+        foreach (Transform child in modPanel.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
+        //GameObject item = gameObject.GetComponent<Item>().gameObject;
+        if (item)
+        {
+            Debug.Log("has item");
+            if (item.GetComponent<Equips>() != null)
+            {
+                Debug.Log("is moddable");
+                currentModItem = item;
+                foreach (GameObject mod in item.GetComponent<Equips>().mods)
+                {
+                    Debug.Log(mod);
+                    //Display all mods in current item
+                    GameObject tempslot = (GameObject)Instantiate(Resources.Load("ModSlot"));
+                    tempslot.SetParent(modPanel);
+                    if (mod)
+                    {
+                        GameObject tempmod = Instantiate(mod);
+                        tempmod.SetParent(tempslot);
+                    }
+                }
             }
         }
     }

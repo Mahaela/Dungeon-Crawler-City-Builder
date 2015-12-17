@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Armor : Item {
+public class Armor : Equips {
     public int defense = 10;
     public int dodge = 5;
 	// Use this for initialization

@@ -9,6 +9,7 @@ public class DungeonGameManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        LevelSerializer.PlayerName = "Test";
         Debug.Log("init inventory");
         List<int> temp = new List<int>();
         temp.Add(0);
@@ -24,7 +25,7 @@ public class DungeonGameManager : MonoBehaviour {
         temp.Add(4);
         temp.Add(6);
 
-        SaveLoad.Instance.SetInvArray(temp);
+        //SaveLoad.Instance.SetInvArray(temp);
 	}
 	
 	// Update is called once per frame
@@ -34,6 +35,18 @@ public class DungeonGameManager : MonoBehaviour {
             Debug.Log("Toggling inventory");
             displayInv = !displayInv;
             inventory.SetActive(displayInv);
+        }
+        if (Input.GetButtonDown("QuickSave"))
+        {
+            Debug.Log("saving");
+            LevelSerializer.SaveGame(LevelSerializer.PlayerName);
+        }
+        if (Input.GetButtonDown("QuickLoad"))
+        {
+            Debug.Log(LevelSerializer.PlayerName);
+            Debug.Log("loading");
+            LevelSerializer.SaveEntry sg = LevelSerializer.SavedGames[LevelSerializer.PlayerName][0];
+            LevelSerializer.LoadNow(sg.Data);
         }
     }
 }
