@@ -24,6 +24,7 @@ public class Slot : MonoBehaviour, IDropHandler, IPointerClickHandler
 
     public void OnDrop(PointerEventData eventData)
     {
+        //place in empty
         if(!item)
         {
             if(slotType == 0 || slotType == Drag.grabbedObject.GetComponent<Item>().type)
@@ -35,6 +36,7 @@ public class Slot : MonoBehaviour, IDropHandler, IPointerClickHandler
         }
         else
         {
+            //swap
             if (slotType == 0 || slotType == Drag.grabbedObject.GetComponent<Item>().type)
             {
                 transform.GetChild(0).gameObject.transform.SetParent(Drag.startParent);
@@ -48,34 +50,81 @@ public class Slot : MonoBehaviour, IDropHandler, IPointerClickHandler
     {
 
         Debug.Log("click");
-        
+        //cleanup old mod item
+        if (currentModItem)
+        {
+            foreach (GameObject mod in currentModItem.GetComponent<Equips>().mods)
+            {
+                Debug.Log("restructuring");
+
+                if (mod)
+                {
+                    //return to parent
+                    mod.GetComponent<CanvasGroup>().alpha = 0;
+                    mod.GetComponent<CanvasGroup>().blocksRaycasts = false;
+                    mod.SetParent(currentModItem);
+                }
+            }
+        }
         GameObject modPanel = GameObject.Find("ModPanel");
         foreach (Transform child in modPanel.transform)
         {
             GameObject.Destroy(child.gameObject);
         }
         //GameObject item = gameObject.GetComponent<Item>().gameObject;
-        if (item)
+        if (item && item.GetComponent<Equips>() != null)
         {
+            
             Debug.Log("has item");
-            if (item.GetComponent<Equips>() != null)
+ 
+            Debug.Log("is moddable");
+            currentModItem = item;
+            foreach (GameObject mod in item.GetComponent<Equips>().mods)
             {
-                Debug.Log("is moddable");
-                currentModItem = item;
-                foreach (GameObject mod in item.GetComponent<Equips>().mods)
+                //Load current mods
+                Debug.Log(mod);
+                    
+                //Display all mods in current item
+                GameObject tempslot = (GameObject)Instantiate(Resources.Load("ModSlot"));
+                tempslot.SetParent(modPanel);
+                if (mod)
                 {
-                    Debug.Log(mod);
-                    //Display all mods in current item
-                    GameObject tempslot = (GameObject)Instantiate(Resources.Load("ModSlot"));
-                    tempslot.SetParent(modPanel);
-                    if (mod)
-                    {
-                        GameObject tempmod = Instantiate(mod);
-                        tempmod.SetParent(tempslot);
-                    }
+
+                    //GameObject tempmod = Instantiate(mod);
+                    //tempmod.GetComponent<CanvasGroup>().alpha = 1;
+                    //tempmod.GetComponent<StoreInformation>().enabled = false;
+                    //tempmod.SetActive(true);
+                    //tempmod.SetParent(tempslot);
+                    mod.GetComponent<CanvasGroup>().alpha = 1;
+                    mod.GetComponent<CanvasGroup>().blocksRaycasts = true;
+                    mod.SetParent(tempslot);
                 }
             }
+
         }
+        /*
+        else
+        {
+            //disable mod portion
+            foreach (GameObject mod in item.GetComponent<Equips>().mods)
+            {
+                Debug.Log("restructuring");
+
+                if (mod)
+                {
+
+                    mod.GetComponent<CanvasGroup>().alpha = 0;
+                    mod.SetParent(currentModItem);
+                }
+            }
+
+            foreach (Transform child in modPanel.transform)
+            {
+                GameObject.Destroy(child.gameObject);
+            }
+            currentModItem = null;
+        }*/
+        
     }
 
     // Use this for initialization

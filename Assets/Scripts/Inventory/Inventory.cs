@@ -43,12 +43,19 @@ public class Inventory : MonoBehaviour, IHasChanged {
     public void HasChanged()
     {
         //adjust weapon mods
+        
         int i = 0;
-        foreach(Transform slotTransform in modSlots)
+        if (Slot.currentModItem)
         {
-            Slot.currentModItem.GetComponent<Equips>().mods[i] = slotTransform.GetComponent<Slot>().item;
-            i++;
-            Debug.Log(slotTransform.GetComponent<Slot>().item);
+            foreach (Transform slotTransform in modSlots)
+            {
+
+                Slot.currentModItem.GetComponent<Equips>().mods[i] = slotTransform.GetComponent<Slot>().item;
+
+
+                i++;
+                Debug.Log(slotTransform.GetComponent<Slot>().item);
+            }
         }
 
 
