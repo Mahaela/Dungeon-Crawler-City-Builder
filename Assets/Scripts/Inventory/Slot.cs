@@ -85,7 +85,7 @@ public class Slot : MonoBehaviour, IDropHandler, IPointerClickHandler
             foreach (GameObject mod in item.GetComponent<Equips>().mods)
             {
                 //Load current mods
-                Debug.Log(mod);
+                Debug.Log("In Slots: "+mod);
 
                 //Display all mods in current item
                 /*
