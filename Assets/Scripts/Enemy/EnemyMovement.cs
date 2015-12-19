@@ -3,13 +3,13 @@ using System.Collections;
 
 public class EnemyMovement : MonoBehaviour {
 
-	Rigidbody enemy; 
+	Rigidbody2D enemy; 
 	Vector3 movement;
 	public float speed = 50f;
-	public Rigidbody target;
-	public float stopDistance; //distance where enemy stops moving
+	public Rigidbody2D target;
+	public float stopDistance = 10f; //distance where enemy stops moving
 	public float recoilForce = 100f;
-
+	public float moveRange = 6f;
 	public float recoilTime = 1.5f;
 
 	private float recoilTimer;
@@ -18,13 +18,12 @@ public class EnemyMovement : MonoBehaviour {
 	private bool lockOn = false;
 	// Use this for initialization
 	void Start () {
-		target = GameObject.FindGameObjectWithTag ("Player").GetComponent<Rigidbody> (); //find the character object
-		enemy = GetComponent<Rigidbody> ();
-		stopDistance = 1f;
+		target = GameObject.FindGameObjectWithTag ("Player").GetComponent<Rigidbody2D> (); //find the character object
+		enemy = GetComponent<Rigidbody2D> ();
 		recoilTimer = 0;
 		recoil = false;
 	}
-	
+
 	// Update is called once per frame
 	void FixedUpdate()
 	{
@@ -38,7 +37,7 @@ public class EnemyMovement : MonoBehaviour {
 		} else { //you can move if no recoil
 			//move towards character
 			movement = (target.transform.position - enemy.transform.position);
-			if (movement.magnitude < 6f) { //but only if they're within range
+			if (movement.magnitude < moveRange) { //but only if they're within range
 				lockOn = true;
 			}
 			if (lockOn && Mathf.Abs (movement.magnitude) > stopDistance) { //check if its not within stopdistance
@@ -60,8 +59,14 @@ public class EnemyMovement : MonoBehaviour {
 	void Move() //moves
 	{
 		movement = movement.normalized * speed * Time.deltaTime; //get unit vector in direction of movement, times speed and time
+
 		//delta time is time between each update
 		enemy.velocity = movement;
+
+		//rotate
+
+		//Quaternion newRotation = Quaternion.LookRotation(movement.normalized);
+		//enemy.MoveRotation (newRotation);
 	}
 
 }
