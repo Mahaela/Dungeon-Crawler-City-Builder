@@ -10,7 +10,7 @@ public class CharacterAttack : MonoBehaviour {
 	public float range = .3f; //range of attack
 	public Camera cam;
 
-	Rigidbody origin;
+	Rigidbody2D origin;
 	Vector3 target;
 	LineRenderer swordRenderer;
 	private float curLength;
@@ -28,7 +28,7 @@ public class CharacterAttack : MonoBehaviour {
 		timer = 0f;
 		swordRenderer = GetComponent<LineRenderer>();
 		timer = attackSpeed;
-		origin = GetComponent<Rigidbody> ();
+		origin = GetComponent<Rigidbody2D> ();
 
 	}
 	
@@ -116,6 +116,9 @@ public class CharacterAttack : MonoBehaviour {
 						enemyHealth.damage(damage, target); //call it, passing in damage and direction of attack.
 					}
 					break;
+                case "Level7Switch":
+                    hit.transform.gameObject.GetComponent<Level7Switch>().run();
+                    break;
 			}
 
 		}
