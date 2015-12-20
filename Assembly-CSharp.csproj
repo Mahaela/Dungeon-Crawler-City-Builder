@@ -56,11 +56,12 @@
      <Compile Include="Assets\Scripts\Enemy\GolemController.cs" />
      <Compile Include="Assets\Scripts\Enemy\GolemHealth.cs" />
      <Compile Include="Assets\Scripts\Enemy\MazeEnemyHealth.cs" />
-     <Compile Include="Assets\Scripts\Level 5 Scripts\DoorController.cs" />
-     <Compile Include="Assets\Scripts\Level 5 Scripts\EnemyTracking.cs" />
+     <Compile Include="Assets\Scripts\Level 5 Scripts\BasementUnlock.cs" />
+     <Compile Include="Assets\Scripts\Level 5 Scripts\Door.cs" />
      <Compile Include="Assets\Scripts\Level 5 Scripts\Key.cs" />
      <Compile Include="Assets\Scripts\Level 5 Scripts\LevelManager.cs" />
      <Compile Include="Assets\Scripts\Level 5 Scripts\StairsController.cs" />
+     <Compile Include="Assets\Scripts\Level 5 Scripts\Switch.cs" />
      <Compile Include="Assets\Scripts\Structure\CollapseWallController.cs" />
      <Compile Include="Assets\Scripts\Structure\MazeRoomController.cs" />
      <Compile Include="Assets\Scripts\Structure\RoomShadowController.cs" />

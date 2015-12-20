@@ -5,55 +5,51 @@ using System.Collections;
  * Created by Carlos Chulo
  * @thecompscientist.dev@gmail.com
  * 
- * This script will be used to add keys to the level manager.
+ * Simple script to unlock anything that interacts with the GameObject
+ * with this script attached.
  * 
  ========================================================================*/
-public class Key : MonoBehaviour {
+public class Switch : MonoBehaviour {
 
     /*=====================================================================
                     LOCAL VARIABLE DECLARATIONS
     =====================================================================*/
 
-    //store a reference to the manager
-    LevelManager manager;
+    //store the state of this button
+    public bool pressed = false;
 
     /*=====================================================================
-                  END OF LOCAL VARIABLE DECLARATIONS
+                   END OF  LOCAL VARIABLE DECLARATIONS
     =====================================================================*/
 
     /*=====================================================================
-                   BEGINNING OF EVENT DRIVEN FUNCTIONS
+               BEGINNING OF EVENT DRIVEN FUNCTIONS
     =====================================================================*/
 
     /*=====================================================================
      * Name:        Start
      * 
-     * Description: This function will be used to store the reference
-     *              of the scene's Level Manager into Local variable
-     *              manager at spawn.
+     * Description: We will use this function to change the switch's color
+     *              to reflect is state
      ====================================================================*/
-    void Start() {
-
-        manager = GameObject.FindGameObjectWithTag("Manager").GetComponent<LevelManager>();
+    void Start()
+    {
+        GetComponent<Renderer>().material.color = Color.cyan;
     }
 
     /*=====================================================================
-     * Name:        OnTriggerEnter2D
-     * 
-     * Description: This function will be used to store the key the player
-     *              collects into the level manager.
+    * Name:        OnTriggerEnter2D
+    * 
+    * Description: We will use this function to detect when the player
+     *             has pressed it. We will change the switch color to
+     *             reflect this state.
     ====================================================================*/
     void OnTriggerEnter2D(Collider2D other) {
-
-        if (other.gameObject.tag == "Player") {
-            manager.addKey();
-            Destroy(this.gameObject);
-        }
+        pressed = true;
+        GetComponent<Renderer>().material.color = Color.grey;
     }
-
 
     /*=====================================================================
                       END OF EVENT DRIVEN FUNCTIONS
      =====================================================================*/
-
 }

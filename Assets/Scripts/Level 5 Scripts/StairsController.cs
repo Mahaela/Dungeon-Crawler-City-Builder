@@ -66,6 +66,7 @@ public class StairsController : MonoBehaviour {
     =====================================================================*/
     void OnTriggerEnter2D(Collider2D other)
     {
+        //if our target has been assigned we teleport player to targetLoc
         if (target != null)
             player.GetComponent<Rigidbody2D>().position = targetLoc;
     }
