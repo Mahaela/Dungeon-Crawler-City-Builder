@@ -1,15 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-
-/*========================================================================
- * Created by Carlos Chulo
- * @thecompscientist.dev@gmail.com
- * 
- * This script will be used to handle unlocking of doors with keys.
- * 
- ========================================================================*/
-public class Door : MonoBehaviour {
+public class BossDoor : MonoBehaviour {
 
     /*=====================================================================
                     LOCAL VARIABLE DECLARATIONS
@@ -17,18 +9,6 @@ public class Door : MonoBehaviour {
 
     //store reference to our Level Manager
     LevelManager manager;
-
-    //make an enum to store requirements for door to unlock
-    public enum EdoorReq
-    {
-        keyRequired,
-        killRequired,
-        switchRequired,
-        noReq
-    }
-
-    //store a state requirement for this door to unlock
-    public EdoorReq requirement;
 
 
     /*=====================================================================
@@ -39,33 +19,23 @@ public class Door : MonoBehaviour {
                    BEGINNING OF EVENT DRIVEN FUNCTIONS
     =====================================================================*/
 
-	/*=====================================================================
+    /*=====================================================================
      * Name:        Start
      * 
      * Description: we will use this to initialize our variables, as well
      *              as set the look of the door for debugging purposes.
      ====================================================================*/
-	void Start () {
+    void Start()
+    {
 
         //store the reference of the level manager
         manager = GameObject.FindGameObjectWithTag("Manager").GetComponent<LevelManager>();
 
-        //set the color of the door depending on its unlock requirement:
-        //yellow = key required
-        //red = kill required
-        //blue = switch required
-        //green = no requirement
-        if (requirement == EdoorReq.keyRequired)
-            gameObject.GetComponent<Renderer>().material.color= Color.yellow;
-        else if(requirement == EdoorReq.killRequired)
-            gameObject.GetComponent<Renderer>().material.color = Color.red;
-        else if (requirement == EdoorReq.switchRequired)
-            gameObject.GetComponent<Renderer>().material.color = Color.blue;
-        else
-            gameObject.GetComponent<Renderer>().material.color = Color.green;
-	}
-	
-	
+        gameObject.GetComponent<Renderer>().material.color = Color.magenta;
+  
+    }
+
+
     /*====================================================================
      * Name:        Start
      * 
@@ -74,16 +44,16 @@ public class Door : MonoBehaviour {
      *              If the player (rather the manager) has a key, we
      *              will reduce the number of keys and open the door.
      ===================================================================*/
-    void OnCollisionEnter2D (Collision2D other) {
+    void OnCollisionEnter2D(Collision2D other)
+    {
 
         //if the manager is present, if the player has collided with this door, and a key is required...
-        if (manager != null && other.gameObject.tag == "Player" && requirement == EdoorReq.keyRequired) {
+        if (manager != null)
+        {
 
             //and if the manager has a key...
-            if (manager.hasKey()){
-
-                //remove the key...
-                manager.removeKey();
+            if (manager.hasBossKey())
+            {
 
                 //unlock the door
                 unlockDoor();
@@ -104,7 +74,8 @@ public class Door : MonoBehaviour {
      * 
      * Description: this function destroys this door (it opens)
      ===================================================================*/
-    public void unlockDoor() {
+    public void unlockDoor()
+    {
 
         this.gameObject.SetActive(false);
 
@@ -112,5 +83,4 @@ public class Door : MonoBehaviour {
     /*=====================================================================
                    END OF CUSTOM FUNCTIONS
     =====================================================================*/
-
 }

@@ -22,8 +22,8 @@ public class LevelManager : MonoBehaviour {
     //count how many keys we have
     public int keys = 0;
 
-    //list of type DoorData to store, see nested class DoorData
-    public List<DoorData> data;
+    public bool bossKey = false;
+   
     /*=====================================================================
                   END OF LOCAL VARIABLE DECLARATIONS
     =====================================================================*/
@@ -32,10 +32,7 @@ public class LevelManager : MonoBehaviour {
                    BEGINNING OF EVENT DRIVEN FUNCTIONS
     =====================================================================*/
 
-    void Update()
-    {
-        updateDoorData();
-    }
+   
     /*=====================================================================
                       END OF EVENT DRIVEN FUNCTIONS
      =====================================================================*/
@@ -61,47 +58,19 @@ public class LevelManager : MonoBehaviour {
             keys--;
     }
 
-    public void updateDoorData()
-    {
-        for (int i = 0; i < data.Count; i++)
-        {
-            if (data[i].door.requirement == Door.EdoorReq.killRequired)
-            {
-                if (data[i].enemy == null)
-                {
-                    data[i].door.unlockDoor();
-                    data.RemoveAt(i);
-                }
-            }
-            else if (data[i].door.requirement == Door.EdoorReq.switchRequired)
-            {
-                if (data[i].goSwitch != null)
-                {
-                    if (data[i].goSwitch.pressed)
-                    {
-                        data[i].door.unlockDoor();
-                        data.RemoveAt(i);
-                    }
-                }
-                else
-                {
-                    Debug.LogError("Doors marked as switch required must be assigned a switch");
-                }
-            }
-        }
 
-           
+    public void addBossKey()
+    {
+        bossKey = true;
+    }
+
+    public bool hasBossKey()
+    {
+        return bossKey;
     }
     /*=====================================================================
                    END OF CUSTOM FUNCTIONS
     =====================================================================*/
 
-    [System.Serializable]
-    public class DoorData : System.Object {
-        public Door door;
-
-        public EnemyHealth enemy;
-
-        public Switch goSwitch;
-    }
+  
 }

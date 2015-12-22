@@ -57,26 +57,24 @@
      <Compile Include="Assets\Scripts\Enemy\GolemHealth.cs" />
      <Compile Include="Assets\Scripts\Enemy\MazeEnemyHealth.cs" />
      <Compile Include="Assets\Scripts\Level 5 Scripts\BasementUnlock.cs" />
+     <Compile Include="Assets\Scripts\Level 5 Scripts\BossDoor.cs" />
+     <Compile Include="Assets\Scripts\Level 5 Scripts\BossKey.cs" />
      <Compile Include="Assets\Scripts\Level 5 Scripts\Door.cs" />
+     <Compile Include="Assets\Scripts\Level 5 Scripts\DungeonDirector.cs" />
      <Compile Include="Assets\Scripts\Level 5 Scripts\Key.cs" />
      <Compile Include="Assets\Scripts\Level 5 Scripts\LevelManager.cs" />
+     <Compile Include="Assets\Scripts\Level 5 Scripts\ManagedSpawn.cs" />
      <Compile Include="Assets\Scripts\Level 5 Scripts\StairsController.cs" />
      <Compile Include="Assets\Scripts\Level 5 Scripts\Switch.cs" />
      <Compile Include="Assets\Scripts\Structure\CollapseWallController.cs" />
      <Compile Include="Assets\Scripts\Structure\MazeRoomController.cs" />
      <Compile Include="Assets\Scripts\Structure\RoomShadowController.cs" />
      <Compile Include="Assets\Scripts\Structure\TeleporterController.cs" />
- <Reference Include="UnityEngine.Advertisements">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
- </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Analytics">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="Mono.Cecil">
  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/Mono.Cecil.dll</HintPath>

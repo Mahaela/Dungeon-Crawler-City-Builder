@@ -18,6 +18,8 @@ public class Switch : MonoBehaviour {
     //store the state of this button
     public bool pressed = false;
 
+
+    public Door target;
     /*=====================================================================
                    END OF  LOCAL VARIABLE DECLARATIONS
     =====================================================================*/
@@ -47,6 +49,9 @@ public class Switch : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D other) {
         pressed = true;
         GetComponent<Renderer>().material.color = Color.grey;
+
+        if (target != null)
+            target.gameObject.SetActive(false);
     }
 
     /*=====================================================================
