@@ -22,6 +22,7 @@ public class LevelManager : MonoBehaviour {
     //count how many keys we have
     public int keys = 0;
 
+    //flag to check if the player has found the bossKey or not
     public bool bossKey = false;
    
     /*=====================================================================
@@ -29,22 +30,29 @@ public class LevelManager : MonoBehaviour {
     =====================================================================*/
 
     /*=====================================================================
-                   BEGINNING OF EVENT DRIVEN FUNCTIONS
-    =====================================================================*/
-
-   
-    /*=====================================================================
-                      END OF EVENT DRIVEN FUNCTIONS
-     =====================================================================*/
-
-    /*=====================================================================
                    BEGINNING OF CUSTOM FUNCTIONS
     =====================================================================*/
+
+    /*=====================================================================
+     * Name:        addKey
+     * 
+     * Description: This function will be used to add a key to the player's
+     *              key count.
+     ====================================================================*/
     public void addKey() {
 
         keys++;
     }
 
+    /*=====================================================================
+     * Name:            hasKey
+     * 
+     * Description:     This function will be used to check if the player
+     *                  has keys.
+     *              
+     * Post-Conditions: Return true if the player has at least one key
+     *                  Return false otherwise
+     ====================================================================*/
     public bool hasKey() {
 
         if (keys > 0)
@@ -53,17 +61,36 @@ public class LevelManager : MonoBehaviour {
             return false;
     }
 
+    /*=====================================================================
+     * Name:            removeKey
+     * 
+     * Description:     This function will remove a key from the player's
+     *                  inventory, granted they have keys to be removed.
+     ====================================================================*/
     public void removeKey(){
         if(keys > 0)
             keys--;
     }
 
-
+    /*=====================================================================
+     * Name:            addBossKey
+     * 
+     * Description:     This function will add bossKey by setting the
+     *                  flag to true.
+     ====================================================================*/
     public void addBossKey()
     {
         bossKey = true;
     }
 
+    /*=====================================================================
+     * Name:            removeKey
+     * 
+     * Description:     This function will check if the player has found
+     *                  the bossKey
+     * 
+     * Post-Conditions: Returns the state of bossKey
+     ====================================================================*/
     public bool hasBossKey()
     {
         return bossKey;

@@ -19,6 +19,7 @@ public class Door : MonoBehaviour {
     LevelManager manager;
 
     //make an enum to store requirements for door to unlock
+    //NOTE: Enum is currently set up for debugging purposes. (Color coding)
     public enum EdoorReq
     {
         keyRequired,
