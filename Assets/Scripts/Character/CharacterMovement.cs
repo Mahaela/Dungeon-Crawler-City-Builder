@@ -4,11 +4,19 @@ using System.Collections;
 public class CharacterMovement : MonoBehaviour {
 
 
+<<<<<<< HEAD
 	Rigidbody player;
 	Vector3 movement;
 	public float speed = 250f;
 
 	public float recoilForce = 50f;
+=======
+	Rigidbody2D player;
+	Vector3 movement;
+	public float speed = 250f;
+
+	public float recoilForce = 20f;
+>>>>>>> 0d44d41a4309a62aadd74de9ab48779bb1551232
 	
 	public float recoilTime = .3f;
 	
@@ -17,7 +25,11 @@ public class CharacterMovement : MonoBehaviour {
 	bool recoil;
 	// Use this for initialization
 	void Start () {
+<<<<<<< HEAD
 		player = GetComponent<Rigidbody> (); //yes
+=======
+		player = GetComponent<Rigidbody2D> (); //yes
+>>>>>>> 0d44d41a4309a62aadd74de9ab48779bb1551232
 	}
 	
 	// Update is called once per frame
