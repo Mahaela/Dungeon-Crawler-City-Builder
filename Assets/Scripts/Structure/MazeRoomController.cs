@@ -44,12 +44,20 @@ public class MazeRoomController : MonoBehaviour {
 	//but only when shadowController calls it
 	public void spawn()
 	{
-		for(int i = 0; i < enemies.Length; i++) //loop through enemy array
+        GameObject roomshadow = transform.Find("RoomShadow").gameObject;
+        Vector3 min = roomshadow.GetComponent<Renderer>().bounds.min;
+        Vector3 max = roomshadow.GetComponent<Renderer>().bounds.max;
+
+
+
+        for (int i = 0; i < enemies.Length; i++) //loop through enemy array
 		{
-			//random location in the maze room 
-			float x = Random.Range(2f, 8f); 
-			float y = Random.Range(2f, 8f);
-			Vector3 spawnPoint = transform.position + new Vector3(x, y, 0);
+
+            //random location in the maze room 
+            //float x = Random.Range(2f, 8f); 
+            //float y = Random.Range(2f, 8f);
+            //Vector3 spawnPoint = transform.position + new Vector3(x, y, 0);
+            Vector3 spawnPoint = new Vector3(Random.Range(min.x,max.x),Random.Range(min.y,max.y),0);
 
 			//set this enemy to enemy mazeroom to this one
 			enemies[i].GetComponent<MazeEnemyHealth>().MazeRoom = this;
