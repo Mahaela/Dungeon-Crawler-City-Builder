@@ -1,28 +1,28 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyAttack : MonoBehaviour {
-
-	/* this is attached to an outer collider child of the enemy, that is its attack range. 
-	 * when character collides with this outer collider, it takes damage
-	 */
+public class GolemAttack : MonoBehaviour {
 
 	public float attackSpeed = 2f;
 	public int damage = 10;
 
+	public GameObject projectile;
+	//public float arrowSpeed =  10000f;
+	//public float arrowTime = 100;
+
 	private GameObject player;
-	private CharacterHealth health;
+	//private CharacterHealth health;
 	private float timer;
 	private bool playerInRange;
-
+	
 	// Use this for initialization
 	void Start () {
 		player = GameObject.FindGameObjectWithTag ("Player");
-		health = player.GetComponent<CharacterHealth> (); //get player's health script
+		//health = player.GetComponent<CharacterHealth> (); //get player's health script
 		timer = attackSpeed;
 		playerInRange = false;
 	}
-
+	
 	void OnTriggerEnter2D (Collider2D other)
 	{
 		if(other.gameObject == player) //this means that it can attack player
@@ -39,20 +39,22 @@ public class EnemyAttack : MonoBehaviour {
 		}
 	}
 	// Update is called once per frame
-
-	void Update () {
-
+	
+	void FixedUpdate () {
+		
 		if (playerInRange && timer >= attackSpeed) {
 			//direction of attack
 			Vector3 direction = player.transform.position - gameObject.transform.position;
-			direction = direction.normalized;
+			//direction = direction.normalized;
+			
+			projectile.GetComponent<ArrowController>().direction = direction;
+			GameObject firedArrow = (GameObject)Instantiate (projectile, transform.position, 
+				new Quaternion(0,0,0,0));
+			//firedArrow.GetComponent<ArrowController>().fire(direction, arrowSpeed, arrowTime);
 
-			//tell player health script to take damage
-			health.Damage (damage, direction);
 			timer = 0f;
 		} else if (timer < attackSpeed) { //just count the time
 			timer += Time.deltaTime;
 		}
 	}
 }
-	
