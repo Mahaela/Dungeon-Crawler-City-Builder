@@ -1,6 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+/*
+ * Name: Item
+ * Desc: holds name and type of item (equip, consume, weapon, armor, etc)
+ */
 public class Item : MonoBehaviour {
 
     public string itemName;

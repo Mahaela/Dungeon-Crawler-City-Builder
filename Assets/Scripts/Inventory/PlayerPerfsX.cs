@@ -1,4 +1,6 @@
-﻿// ArrayPrefs2 v 1.4
+﻿//CURRENTLY NOT BEING USED
+
+// ArrayPrefs2 v 1.4
 
 using UnityEngine;
 using System;

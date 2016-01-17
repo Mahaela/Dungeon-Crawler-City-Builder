@@ -5,14 +5,14 @@ using System;
 using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour, IHasChanged {
-    [SerializeField] Transform slots; 
-    [SerializeField] Text invText;
-    [SerializeField] Transform modSlots;
+    [SerializeField] Transform slots; //panel that holds the equip slots.
+    [SerializeField] Text invText; //display equipped item stats
+    [SerializeField] Transform modSlots; //panel that holds the equip mod slots
     
 
 	// Use this for initialization
 	void Start () {
-        HasChanged();
+        HasChanged(); //init
         /*
         SaveLoad.Instance.GetInvArray();
         Debug.Log("Generating Inventory");
@@ -43,7 +43,6 @@ public class Inventory : MonoBehaviour, IHasChanged {
     public void HasChanged()
     {
         //adjust weapon mods
-        
         int i = 0;
         if (Slot.currentModItem)
         {
@@ -53,16 +52,11 @@ public class Inventory : MonoBehaviour, IHasChanged {
                 {
                     Slot.currentModItem.GetComponent<Equips>().mods[i] = slotTransform.GetComponent<Slot>().item;
                 }
-                
-
 
                 i++;
                 Debug.Log(slotTransform.GetComponent<Slot>().item);
             }
         }
-
-
-
 
         //calculate total bonuses
         int totalDef = 0;

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//OLD DON'T USE
 public class ItemTable : MonoBehaviour {
 
     public static ItemTable Instance;

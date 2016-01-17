@@ -9,8 +9,12 @@ public class DungeonGameManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+
+        //setup level serializer
         LevelSerializer.PlayerName = "Test";
         Debug.Log("init inventory");
+
+        //unused right now. used to set up the default inventory
         List<int> temp = new List<int>();
         temp.Add(0);
         temp.Add(1);
@@ -30,6 +34,8 @@ public class DungeonGameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        //jerry-rigged saving and loading the inventory
         if (Input.GetButtonDown("Fire2"))
         {
             Debug.Log("Toggling inventory");
@@ -53,6 +59,7 @@ public class DungeonGameManager : MonoBehaviour {
         //inventory.GetComponent<Inventory>().HasChanged();//somehow this helps loading the mods in each equipment
     }
 
+    //delay the calling of haschanged so equip info is updated correctly.
     void CallHasChanged()
     {
         inventory.GetComponent<Inventory>().HasChanged();

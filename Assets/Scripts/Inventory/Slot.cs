@@ -37,7 +37,7 @@ public class Slot : MonoBehaviour, IDropHandler, IPointerClickHandler
         else
         {
             //swap
-            if (slotType == 0 || slotType == Drag.grabbedObject.GetComponent<Item>().type)
+            if (slotType == 0 || slotType == Drag.grabbedObject.GetComponent<Item>().type) //TODO: NEED TO ALSO CHECK IF SWAPPED ITEM IS GOING TO CORRECT SLOT
             {
                 transform.GetChild(0).gameObject.transform.SetParent(Drag.startParent);
                 Drag.grabbedObject.transform.SetParent(transform);

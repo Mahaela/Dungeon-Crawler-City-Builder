@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/*
+ * Name: Weapon
+ * Desc: hold info for weapon type items
+ */
 public class Weapon : Equips {
 
     public int damage = 2;
