@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class CharacterHealth : MonoBehaviour {
 
 	public int health = 100;
-
+	public Slider healthBar;
 	double recoilTime;
 	
 	double damageTimer;
@@ -34,6 +35,7 @@ public class CharacterHealth : MonoBehaviour {
 	{
 		if (!recoil) {
 			health -= dmg;
+			healthBar.value = health;
 			recoil = true;
 			movement.getHit(direction); //call player's movement script for knockback
 			Debug.Log("Character Health = " + health);
