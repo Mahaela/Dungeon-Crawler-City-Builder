@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Enviormental Art/Materials/CaveWallBottomLeftCornerOuter.mat.meta
 guid: 8c2ced7a0bbb00d4c9e9a50bb6ab3f26
 timeCreated: 1451444506
+=======
+guid: c936d4e72234a0245bdd0d9e8b1204fd
+timeCreated: 1450560854
+>>>>>>> Branch:Assets/Prefabs/MazeEnemy.prefab.meta
 licenseType: Free
 NativeFormatImporter:
   userData: 

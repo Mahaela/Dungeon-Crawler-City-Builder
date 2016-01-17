@@ -10,7 +10,7 @@ public class RoomShadowController : MonoBehaviour {
 		gameObject.SetActive (true);
 	}
 
-	void OnTriggerEnter2D (Collider2D other)
+	void OnTriggerEnter (Collider other)
 	{
 		//if player enters the shadow
 		if(other.gameObject.tag == "Player")
