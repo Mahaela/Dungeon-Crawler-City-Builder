@@ -2,26 +2,26 @@
 using System.Collections;
 
 public class Bat : Monster {
-    public int level = DEFAULT_LEVEL;
-    public float attackSpeed = DEFAULT_ATTACK_SPEED;
-    public float moveSpeed = DEFAULT_MOVE_SPEED;
-    public int baseDamage = DEFAULT_BASE_DAMAGE;
-    public int baseHealth = DEFAULT_BASE_HEALTH;
-    public int dropChance = DEFAULT_DROP_CHANCE;
-    public int critChance = DEFAULT_CRIT_CHANCE;
+    public int myLevel = DEFAULT_LEVEL;
+    public float myAttackSpeed = DEFAULT_ATTACK_SPEED;
+    public float myMoveSpeed = DEFAULT_MOVE_SPEED;
+    public int myBaseDamage = DEFAULT_BASE_DAMAGE;
+    public int myBaseHealth = DEFAULT_BASE_HEALTH;
+    public int myDropChance = DEFAULT_DROP_CHANCE;
+    public int myCritChance = DEFAULT_CRIT_CHANCE;
 
 	// Use this for initialization
-	void Start () {
-        Initialize(level, attackSpeed, moveSpeed, baseDamage, baseHealth, dropChance, critChance);
+	void Start() {
+        Initialize(myLevel, myAttackSpeed, myMoveSpeed, myBaseDamage, myBaseHealth, myDropChance, myCritChance);
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update() {
 	
 	}
 
     public override void Attack() {
-
+        
     }
 
     public override void Move() {

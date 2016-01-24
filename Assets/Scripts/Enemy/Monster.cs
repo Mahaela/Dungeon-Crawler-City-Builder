@@ -7,27 +7,27 @@ using System.Collections;
 /// </summary>
 public abstract class Monster : MonoBehaviour {
     // Constants for default and allowed instance variable values
-    public static readonly int DEFAULT_LEVEL = 1;
-    public static readonly int MIN_LEVEL = 1;
-    public static readonly int MAX_LEVEL = 10;
-    public static readonly float DEFAULT_ATTACK_SPEED = 2f;
-    public static readonly float MIN_ATTACK_SPEED = 1f;
-    public static readonly float DEFAULT_MOVE_SPEED = 50f;
-    public static readonly float MIN_MOVE_SPEED = 1f;
-    public static readonly int DEFAULT_BASE_DAMAGE = 5;
-    public static readonly int MIN_BASE_DAMAGE = 5;
-    public static readonly int DEFAULT_BASE_HEALTH = 25;
-    public static readonly int MIN_MAX_HEALTH = 1;
-    public static readonly int DEFAULT_DROP_CHANCE = 10;
-    public static readonly int MIN_DROP_CHANCE = 0;
-    public static readonly int MAX_DROP_CHANCE = 100;
-    public static readonly int DEFAULT_CRIT_CHANCE = 5;
-    public static readonly int MIN_CRIT_CHANCE = 0;
-    public static readonly int MAX_CRIT_CHANCE = 100;
+    public const int DEFAULT_LEVEL = 1;
+    public const int MIN_LEVEL = 1;
+    public const int MAX_LEVEL = 10;
+    public const float DEFAULT_ATTACK_SPEED = 2f;
+    public const float MIN_ATTACK_SPEED = 1f;
+    public const float DEFAULT_MOVE_SPEED = 50f;
+    public const float MIN_MOVE_SPEED = 1f;
+    public const int DEFAULT_BASE_DAMAGE = 5;
+    public const int MIN_BASE_DAMAGE = 5;
+    public const int DEFAULT_BASE_HEALTH = 25;
+    public const int MIN_MAX_HEALTH = 1;
+    public const int DEFAULT_DROP_CHANCE = 10;
+    public const int MIN_DROP_CHANCE = 0;
+    public const int MAX_DROP_CHANCE = 100;
+    public const int DEFAULT_CRIT_CHANCE = 5;
+    public const int MIN_CRIT_CHANCE = 0;
+    public const int MAX_CRIT_CHANCE = 100;
 
     // Other constants
-    public static readonly int PROBABILITY_CONVERSION = 99;
-    public static readonly float CRIT_MODIFIER = 2f;
+    public const int PROBABILITY_CONVERSION = 99;
+    public const float CRIT_MODIFIER = 2f;
 
     // Unchanging (after initialization) instance variables
     int level;
@@ -92,9 +92,13 @@ public abstract class Monster : MonoBehaviour {
     /// <summary>
     /// If this monster has not been initialized, it is invalid and self-destructs.
     /// </summary>
-    void CheckValid() {
+    public virtual bool CheckValid() {
         if (Level == 0) {
             Destroy(gameObject);
+            return false;
+        }
+        else {
+            return true;
         }
     }
 

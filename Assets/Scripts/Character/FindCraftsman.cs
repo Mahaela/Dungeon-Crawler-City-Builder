@@ -3,15 +3,16 @@ using System.Collections;
 
 public class FindCraftsman : MonoBehaviour {
     static bool isCraftsmanFound;
+    public GameObject craftsman;
 
     // Use this for initialization
     void Start() {
         isCraftsmanFound = false;
     }
 
-    void OnCollisionEnter(Collision col)
+    void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.name == "Craftsman")
+        if (col.gameObject == craftsman)
         {
             isCraftsmanFound = true;
         }
