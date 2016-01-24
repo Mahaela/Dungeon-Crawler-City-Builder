@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: b35c7cabc7e5bbf4fb6fb50890ded46f
 timeCreated: 1450049353
+=======
+guid: f322d024d0fd445378018fd472818c01
+timeCreated: 1450032610
+>>>>>>> origin/Mahaela
 licenseType: Free
 NativeFormatImporter:
   userData: 

@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyHealth : MonoBehaviour {
+public class GolemHealth : MonoBehaviour {
 
 	public int health = 30;
-	//public MazeRoomController MazeRoom; //mazeroom that spawned the enemy
 
+	public GolemController controller;
+	public int index;
 	double recoilTime; //time between taking damage, when it can't take more damage
-
+	
 	double damageTimer;
 	EnemyMovement movement;
 	bool recoil;
@@ -16,7 +17,7 @@ public class EnemyHealth : MonoBehaviour {
 		damageTimer = 0f;
 		recoil = false;
 		movement = GetComponent<EnemyMovement> (); 
-		recoilTime = movement.recoilTime;
+		recoilTime = 2 * movement.recoilTime;
 	}
 	
 	// Update is called once per frame
@@ -42,11 +43,11 @@ public class EnemyHealth : MonoBehaviour {
 			checkDeath (); //have I died?
 		}
 	}
-
+	
 	void checkDeath()
 	{
 		if (health <= 0) {
-			//MazeRoom.dead(); //notify mazeroom that I'm dead
+			controller.dead(index);
 			Destroy(gameObject);	//I ded.	
 		}
 	}

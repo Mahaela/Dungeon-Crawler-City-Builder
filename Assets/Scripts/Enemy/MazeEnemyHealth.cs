@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyHealth : MonoBehaviour {
+public class MazeEnemyHealth : MonoBehaviour {
 
 	public int health = 30;
-	//public MazeRoomController MazeRoom; //mazeroom that spawned the enemy
+	public MazeRoomController MazeRoom; //mazeroom that spawned the enemy
 
 	double recoilTime; //time between taking damage, when it can't take more damage
 
@@ -18,7 +18,7 @@ public class EnemyHealth : MonoBehaviour {
 		movement = GetComponent<EnemyMovement> (); 
 		recoilTime = movement.recoilTime;
 	}
-	
+
 	// Update is called once per frame
 	void FixedUpdate () {
 		//if its in recoil state
@@ -46,7 +46,7 @@ public class EnemyHealth : MonoBehaviour {
 	void checkDeath()
 	{
 		if (health <= 0) {
-			//MazeRoom.dead(); //notify mazeroom that I'm dead
+			MazeRoom.dead(); //notify mazeroom that I'm dead
 			Destroy(gameObject);	//I ded.	
 		}
 	}
