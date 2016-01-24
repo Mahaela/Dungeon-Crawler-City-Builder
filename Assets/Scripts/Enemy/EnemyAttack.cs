@@ -23,11 +23,7 @@ public class EnemyAttack : MonoBehaviour {
 		playerInRange = false;
 	}
 
-<<<<<<< HEAD
-	void OnTriggerEnter (Collider other)
-=======
 	void OnTriggerEnter2D (Collider2D other)
->>>>>>> 0d44d41a4309a62aadd74de9ab48779bb1551232
 	{
 		if(other.gameObject == player) //this means that it can attack player
 		{
@@ -36,11 +32,7 @@ public class EnemyAttack : MonoBehaviour {
 	}
 	
 	
-<<<<<<< HEAD
-	void OnTriggerExit (Collider other)
-=======
 	void OnTriggerExit2D (Collider2D other)
->>>>>>> 0d44d41a4309a62aadd74de9ab48779bb1551232
 	{
 		if (other.gameObject == player) { //no longer in range
 			playerInRange = false;
