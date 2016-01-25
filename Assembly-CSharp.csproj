@@ -52,8 +52,10 @@
      <Compile Include="Assets\Scripts\Enemy\EnemyHealth.cs" />
      <Compile Include="Assets\Scripts\Enemy\EnemyMovement.cs" />
      <Compile Include="Assets\Scripts\Structure\CollapseWallController.cs" />
+     <Compile Include="Assets\Scripts\Structure\Level10ShadowController.cs" />
      <Compile Include="Assets\Scripts\Structure\Level7Switch.cs" />
      <Compile Include="Assets\Scripts\Structure\MazeRoomController.cs" />
+     <Compile Include="Assets\Scripts\Structure\OpenDoor.cs" />
      <Compile Include="Assets\Scripts\Structure\RoomShadowController.cs" />
      <Compile Include="Assets\Scripts\Structure\StandardRoomController.cs" />
      <Compile Include="Assets\Scripts\Structure\StandardRoomShadowController.cs" />
