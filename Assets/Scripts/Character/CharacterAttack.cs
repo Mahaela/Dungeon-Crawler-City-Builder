@@ -10,20 +10,12 @@ public class CharacterAttack : MonoBehaviour {
 	public float range = .3f; //range of attack
 	public Camera cam;
 
-<<<<<<< HEAD
-	Rigidbody origin;
-=======
 	Rigidbody2D origin;
->>>>>>> 0d44d41a4309a62aadd74de9ab48779bb1551232
 	Vector3 target;
 	LineRenderer swordRenderer;
 	private float curLength;
 
-<<<<<<< HEAD
-	RaycastHit hit;
-=======
 	RaycastHit2D hit;
->>>>>>> 0d44d41a4309a62aadd74de9ab48779bb1551232
 	private float timer;
 	private float attackTimer = 0f;
 	private bool attacking = false;
@@ -36,11 +28,7 @@ public class CharacterAttack : MonoBehaviour {
 		timer = 0f;
 		swordRenderer = GetComponent<LineRenderer>();
 		timer = attackSpeed;
-<<<<<<< HEAD
-		origin = GetComponent<Rigidbody> ();
-=======
 		origin = GetComponent<Rigidbody2D> ();
->>>>>>> 0d44d41a4309a62aadd74de9ab48779bb1551232
 
 	}
 	
@@ -116,24 +104,6 @@ public class CharacterAttack : MonoBehaviour {
 		}
 		//check hit
 		//cast a ray with curLength in same direction as sword
-<<<<<<< HEAD
-		if (Physics.Raycast (origin.transform.position, target, out hit, curLength)) {
-			switch(hit.transform.gameObject.tag) //take the tag
-			{
-				//if you hit object tagged enemy
-				case "Enemy":
-					//get the EnemyHealth script of that object
-					EnemyHealth enemyHealth = hit.collider.GetComponentInParent <EnemyHealth> ();
-					if(enemyHealth != null) //make sure it HAS an enemyHealth script
-					{
-						enemyHealth.damage(damage, target); //call it, passing in damage and direction of attack.
-					}
-					break;
-			}
-
-		}
-
-=======
 		hit = Physics2D.Raycast (new Vector2 (origin.transform.position.x, origin.transform.position.y), 
 			new Vector2 (target.x, target.y), curLength);
 			
@@ -154,6 +124,5 @@ public class CharacterAttack : MonoBehaviour {
 				//}
 			}
 		} 
->>>>>>> 0d44d41a4309a62aadd74de9ab48779bb1551232
 	}
 }

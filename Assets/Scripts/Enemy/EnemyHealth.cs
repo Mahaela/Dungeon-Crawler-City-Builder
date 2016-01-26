@@ -4,11 +4,7 @@ using System.Collections;
 public class EnemyHealth : MonoBehaviour {
 
 	public int health = 30;
-<<<<<<< HEAD
-	public MazeRoomController MazeRoom; //mazeroom that spawned the enemy
-=======
 	//public MazeRoomController MazeRoom; //mazeroom that spawned the enemy
->>>>>>> 0d44d41a4309a62aadd74de9ab48779bb1551232
 
 	double recoilTime; //time between taking damage, when it can't take more damage
 
@@ -20,11 +16,7 @@ public class EnemyHealth : MonoBehaviour {
 		damageTimer = 0f;
 		recoil = false;
 		movement = GetComponent<EnemyMovement> (); 
-<<<<<<< HEAD
-		recoilTime = 2 * movement.recoilTime;
-=======
 		recoilTime = movement.recoilTime;
->>>>>>> 0d44d41a4309a62aadd74de9ab48779bb1551232
 	}
 	
 	// Update is called once per frame
@@ -54,11 +46,7 @@ public class EnemyHealth : MonoBehaviour {
 	void checkDeath()
 	{
 		if (health <= 0) {
-<<<<<<< HEAD
-			MazeRoom.dead(); //notify mazeroom that I'm dead
-=======
 			//MazeRoom.dead(); //notify mazeroom that I'm dead
->>>>>>> 0d44d41a4309a62aadd74de9ab48779bb1551232
 			Destroy(gameObject);	//I ded.	
 		}
 	}
