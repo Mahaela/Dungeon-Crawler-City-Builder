@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class OpenDoor : MonoBehaviour {
+public class OpenRoom : MonoBehaviour {
 
     public GameObject northRoom = null;
     public GameObject southRoom = null;
@@ -71,7 +71,7 @@ public class OpenDoor : MonoBehaviour {
 			Vector3 spawnPoint = transform.position + new Vector3(x, y, 0);
 
             //set this enemy to enemy mazeroom to this one
-            enemies[i].GetComponent<EnemyHealth>().MazeRoom = this;
+            //enemies[i].GetComponent<EnemyHealth>().MazeRoom = this;
 
             //make the enemy
             Instantiate(enemies[i], spawnPoint, Quaternion.identity);

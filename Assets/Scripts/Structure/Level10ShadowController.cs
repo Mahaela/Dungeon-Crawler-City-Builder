@@ -3,10 +3,10 @@ using System.Collections;
 
 public class Level10ShadowController : MonoBehaviour {
 
-	private OpenDoor control;
+	private OpenRoom control;
 	void Start () {
 		//shadow ON
-		control = this.transform.parent.GetComponent<OpenDoor> ();
+		control = this.transform.parent.GetComponent<OpenRoom> ();
 		gameObject.SetActive (true);
 	}
 
