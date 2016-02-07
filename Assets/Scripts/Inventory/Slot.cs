@@ -27,7 +27,7 @@ public class Slot : MonoBehaviour, IDropHandler, IPointerClickHandler
         //place in empty
         if(!item)
         {
-            if(slotType == 0 || slotType == Drag.grabbedObject.GetComponent<Item>().type)
+            if(Drag.grabbedObject && slotType == 0 || slotType == Drag.grabbedObject.GetComponent<Item>().type)
             {
                 Drag.grabbedObject.transform.SetParent(transform);
                 ExecuteEvents.ExecuteHierarchy<IHasChanged>(gameObject, null, (x, y) => x.HasChanged());
