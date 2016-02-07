@@ -31,11 +31,11 @@ public class MazeRoomController : MonoBehaviour {
 		if (enemyCount == 0) {
 			for(int i = 0; i < wallsToCollapse.Length; i++)
 			{
-				wallsToCollapse[i].SetActive(false);
+				wallsToCollapse[i].SetActive(false); //disable all the walls to collapse
 			}
 			for( int i = 0; i < shadowsToFree.Length; i++)
 			{
-				shadowsToFree[i].GetComponent<MeshRenderer>().enabled = false;
+				shadowsToFree[i].GetComponent<MeshRenderer>().enabled = false; //free the shadows of the next room
 			}
 		}
 	}
@@ -52,7 +52,7 @@ public class MazeRoomController : MonoBehaviour {
 			Vector3 spawnPoint = transform.position + new Vector3(x, y, 0);
 
 			//set this enemy to enemy mazeroom to this one
-			enemies[i].GetComponent<EnemyHealth>().MazeRoom = this;
+			enemies[i].GetComponent<MazeEnemyHealth>().MazeRoom = this;
 
 			//make the enemy
 			Instantiate(enemies[i], spawnPoint, Quaternion.identity);

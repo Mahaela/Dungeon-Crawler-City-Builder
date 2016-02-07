@@ -8,7 +8,7 @@ public class CharacterMovement : MonoBehaviour {
 	Vector3 movement;
 	public float speed = 250f;
 
-	public float recoilForce = 50f;
+	public float recoilForce = 20f;
 	
 	public float recoilTime = .3f;
 	

@@ -15,7 +15,7 @@ public class CharacterAttack : MonoBehaviour {
 	LineRenderer swordRenderer;
 	private float curLength;
 
-	RaycastHit hit;
+	RaycastHit2D hit;
 	private float timer;
 	private float attackTimer = 0f;
 	private bool attacking = false;
@@ -104,24 +104,27 @@ public class CharacterAttack : MonoBehaviour {
 		}
 		//check hit
 		//cast a ray with curLength in same direction as sword
-		if (Physics.Raycast (origin.transform.position, target, out hit, curLength)) {
-			switch(hit.transform.gameObject.tag) //take the tag
-			{
+		hit = Physics2D.Raycast (new Vector2 (origin.transform.position.x, origin.transform.position.y), 
+			new Vector2 (target.x, target.y), curLength);
+			
+		if (hit != null) {
+			if (hit.transform != null && hit.transform.gameObject.tag == "Enemy") { //take the tag
 				//if you hit object tagged enemy
-				case "Enemy":
-					//get the EnemyHealth script of that object
-					EnemyHealth enemyHealth = hit.collider.GetComponentInParent <EnemyHealth> ();
-					if(enemyHealth != null) //make sure it HAS an enemyHealth script
-					{
-						enemyHealth.damage(damage, target); //call it, passing in damage and direction of attack.
+				//get the EnemyHealth script of that object
+			
+				EnemyHealth enemyHealth = hit.collider.GetComponentInParent <EnemyHealth> ();
+				if (enemyHealth != null) { //make sure it HAS an enemyHealth script
+					enemyHealth.damage (damage, target); //call it, passing in damage and direction of attack.
+				} else {	
+					GolemHealth health = hit.collider.GetComponentInParent <GolemHealth> ();
+					if (health != null && health.isActiveAndEnabled) { //make sure it HAS an enemyHealth script
+						health.damage (damage, target); //call it, passing in damage and direction of attack.
 					}
-					break;
-                case "Level7Switch":
-                    hit.transform.gameObject.GetComponent<Level7Switch>().run();
-                    break;
+					if (hit.transform.gameObject.tag == "Level7Switch") {
+						hit.transform.gameObject.GetComponent<Level7Switch> ().run ();
+					}
+				}
 			}
-
-		}
-
+		} 
 	}
 }
