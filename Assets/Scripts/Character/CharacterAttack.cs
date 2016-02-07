@@ -15,7 +15,7 @@ public class CharacterAttack : MonoBehaviour {
 	LineRenderer swordRenderer;
 	private float curLength;
 
-	RaycastHit2D hit;
+	RaycastHit2D[] hit;
 	private float timer;
 	private float attackTimer = 0f;
 	private bool attacking = false;
@@ -104,27 +104,29 @@ public class CharacterAttack : MonoBehaviour {
 		}
 		//check hit
 		//cast a ray with curLength in same direction as sword
-		hit = Physics2D.Raycast (new Vector2 (origin.transform.position.x, origin.transform.position.y), 
+		hit = Physics2D.RaycastAll (new Vector2 (origin.transform.position.x, origin.transform.position.y), 
 			new Vector2 (target.x, target.y), curLength);
-			
-		if (hit != null) {
-			if (hit.transform != null && hit.transform.gameObject.tag == "Enemy") { //take the tag
-				//if you hit object tagged enemy
-				//get the EnemyHealth script of that object
-			
-				EnemyHealth enemyHealth = hit.collider.GetComponentInParent <EnemyHealth> ();
-				if (enemyHealth != null) { //make sure it HAS an enemyHealth script
-					enemyHealth.damage (damage, target); //call it, passing in damage and direction of attack.
-				} else {	
-					GolemHealth health = hit.collider.GetComponentInParent <GolemHealth> ();
-					if (health != null && health.isActiveAndEnabled) { //make sure it HAS an enemyHealth script
-						health.damage (damage, target); //call it, passing in damage and direction of attack.
-					}
-					if (hit.transform.gameObject.tag == "Level7Switch") {
-						hit.transform.gameObject.GetComponent<Level7Switch> ().run ();
-					}
-				}
-			}
-		} 
+        for (int i = 0; i < hit.Length; i++) {
+            if (hit != null) {
+                if (hit[i].transform != null && hit[i].transform.gameObject.tag == "Enemy") { //take the tag
+                  //if you hit object tagged enemy
+                  //get the EnemyHealth script of that object
+
+                    EnemyHealth enemyHealth = hit[i].collider.GetComponentInParent<EnemyHealth>();
+                    if (enemyHealth != null) { //make sure it HAS an enemyHealth script
+                        enemyHealth.damage(damage, target); //call it, passing in damage and direction of attack.
+                    }
+                    else {
+                        GolemHealth health = hit[i].collider.GetComponentInParent<GolemHealth>();
+                        if (health != null && health.isActiveAndEnabled) { //make sure it HAS an enemyHealth script
+                            health.damage(damage, target); //call it, passing in damage and direction of attack.
+                        }
+                    }
+                }
+                if (hit[i].transform.gameObject.tag == "Level7Switch") {
+                    hit[i].transform.gameObject.GetComponent<Level7Switch>().run();
+                }
+            }
+        }
 	}
 }

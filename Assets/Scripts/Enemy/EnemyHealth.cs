@@ -4,7 +4,8 @@ using System.Collections;
 public class EnemyHealth : MonoBehaviour {
 
 	public int health = 30;
-	//public MazeRoomController MazeRoom; //mazeroom that spawned the enemy
+    //public MazeRoomController MazeRoom; //mazeroom that spawned the enemy
+    public MonoBehaviour controller;
 
 	double recoilTime; //time between taking damage, when it can't take more damage
 
@@ -46,8 +47,14 @@ public class EnemyHealth : MonoBehaviour {
 	void checkDeath()
 	{
 		if (health <= 0) {
-			//MazeRoom.dead(); //notify mazeroom that I'm dead
-			Destroy(gameObject);	//I ded.	
+            //MazeRoom.dead(); //notify mazeroom that I'm dead
+            if (controller is MazeRoomController) {
+                ((MazeRoomController)controller).dead();
+            }
+            else if (controller is OpenRoom) {
+                ((OpenRoom)controller).dead();
+            }
+            Destroy(gameObject);	//I ded.	
 		}
 	}
 }

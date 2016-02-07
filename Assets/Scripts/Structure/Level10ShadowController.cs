@@ -18,6 +18,10 @@ public class Level10ShadowController : MonoBehaviour {
 			gameObject.SetActive(false); //disable the shadow
 			//init and spawn enemies
 			control.spawn(); 
+            if (control.getEnemyCount() == 0)
+            {
+                control.openDoors();
+            }
 		}
 	}
 }

@@ -71,11 +71,16 @@ public class OpenRoom : MonoBehaviour {
 			Vector3 spawnPoint = transform.position + new Vector3(x, y, 0);
 
             //set this enemy to enemy mazeroom to this one
-            //enemies[i].GetComponent<EnemyHealth>().MazeRoom = this;
+            enemies[i].GetComponent<EnemyHealth>().controller = this;
 
             //make the enemy
             Instantiate(enemies[i], spawnPoint, Quaternion.identity);
 
 		}
 	}
+
+    public int getEnemyCount()
+    {
+        return enemyCount;
+    }
 }

@@ -35,7 +35,7 @@ public class CharacterHealth : MonoBehaviour {
 	{
 		if (!recoil) {
 			health -= dmg;
-			healthBar.value = health;
+			//healthBar.value = health;
 			recoil = true;
 			movement.getHit(direction); //call player's movement script for knockback
 			Debug.Log("Character Health = " + health);
