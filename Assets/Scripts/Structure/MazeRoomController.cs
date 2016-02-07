@@ -31,11 +31,19 @@ public class MazeRoomController : MonoBehaviour {
 		if (enemyCount == 0) {
 			for(int i = 0; i < wallsToCollapse.Length; i++)
 			{
+<<<<<<< HEAD
+				wallsToCollapse[i].SetActive(false);
+			}
+			for( int i = 0; i < shadowsToFree.Length; i++)
+			{
+				shadowsToFree[i].GetComponent<MeshRenderer>().enabled = false;
+=======
 				wallsToCollapse[i].SetActive(false); //disable all the walls to collapse
 			}
 			for( int i = 0; i < shadowsToFree.Length; i++)
 			{
 				shadowsToFree[i].GetComponent<MeshRenderer>().enabled = false; //free the shadows of the next room
+>>>>>>> 0d44d41a4309a62aadd74de9ab48779bb1551232
 			}
 		}
 	}
@@ -44,6 +52,7 @@ public class MazeRoomController : MonoBehaviour {
 	//but only when shadowController calls it
 	public void spawn()
 	{
+<<<<<<< HEAD
 		for(int i = 0; i < enemies.Length; i++) //loop through enemy array
 		{
 			//random location in the maze room 
@@ -52,7 +61,26 @@ public class MazeRoomController : MonoBehaviour {
 			Vector3 spawnPoint = transform.position + new Vector3(x, y, 0);
 
 			//set this enemy to enemy mazeroom to this one
+			enemies[i].GetComponent<EnemyHealth>().MazeRoom = this;
+=======
+        GameObject roomshadow = transform.Find("RoomShadow").gameObject;
+        Vector3 min = roomshadow.GetComponent<Renderer>().bounds.min;
+        Vector3 max = roomshadow.GetComponent<Renderer>().bounds.max;
+
+
+
+        for (int i = 0; i < enemies.Length; i++) //loop through enemy array
+		{
+
+            //random location in the maze room 
+            //float x = Random.Range(2f, 8f); 
+            //float y = Random.Range(2f, 8f);
+            //Vector3 spawnPoint = transform.position + new Vector3(x, y, 0);
+            Vector3 spawnPoint = new Vector3(Random.Range(min.x,max.x),Random.Range(min.y,max.y),0);
+
+			//set this enemy to enemy mazeroom to this one
 			enemies[i].GetComponent<MazeEnemyHealth>().MazeRoom = this;
+>>>>>>> 0d44d41a4309a62aadd74de9ab48779bb1551232
 
 			//make the enemy
 			Instantiate(enemies[i], spawnPoint, Quaternion.identity);
