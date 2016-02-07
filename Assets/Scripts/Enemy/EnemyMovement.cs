@@ -8,19 +8,25 @@ public class EnemyMovement : MonoBehaviour {
 	public float speed = 50f;
 	public Rigidbody2D target;
 	public float stopDistance = 10f; //distance where enemy stops moving
-	public float recoilForce = 100f;
+	//public float recoilForce = 100f;
 	public float moveRange = 6f;
-	public float recoilTime = 1.5f;
+	public float knockbackDistance = 75f;
+	public float stunTime = 1.5f;
+	public float knockbackSpeed = 1000f;
 
-	private float recoilTimer;
+	private Vector3 knockDirection;
+	private float distToGo;
+	private float stunTimer;
 
 	bool recoil;
 	private bool lockOn = false;
 	// Use this for initialization
 	void Start () {
 		target = GameObject.FindGameObjectWithTag ("Player").GetComponent<Rigidbody2D> (); //find the character object
+
 		enemy = GetComponent<Rigidbody2D> ();
-		recoilTimer = 0;
+		distToGo = 0;
+		stunTimer = 0;
 		recoil = false;
 	}
 
@@ -29,10 +35,16 @@ public class EnemyMovement : MonoBehaviour {
 	{
 		//if you're getting knocked back
 		if (recoil) {
-			recoilTimer += Time.deltaTime; //add time
-			if (recoilTimer >= recoilTime) { //check if still recoil
+			stunTimer -= Time.deltaTime;
+			if (distToGo > 0) {
+				enemy.velocity = knockDirection.normalized * knockbackSpeed * Time.deltaTime;
+				distToGo -= knockbackSpeed * Time.deltaTime;
+				Debug.Log (distToGo);
+			} else if (stunTimer <= 0f) {
 				recoil = false;
-				recoilTimer = 0f;
+				stunTimer = 0f;
+			} else {
+				enemy.velocity = new Vector3 (0f, 0f, 0f);
 			}
 		} else { //you can move if no recoil
 			//move towards character
@@ -51,7 +63,9 @@ public class EnemyMovement : MonoBehaviour {
 	public void getHit(Vector3 direction)
 	{
 		if (!recoil) {
-			enemy.AddForce (direction * recoilForce); //toss character back
+			knockDirection = direction;
+			stunTimer = stunTime;
+			distToGo = knockbackDistance;
 			recoil = true;
 		}
 	}

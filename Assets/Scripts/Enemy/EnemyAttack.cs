@@ -9,6 +9,8 @@ public class EnemyAttack : MonoBehaviour {
 
 	public float attackSpeed = 2f;
 	public int damage = 10;
+	public int knockbackDist = 100;
+	public float stunTime = 0;
 
 	private GameObject player;
 	private CharacterHealth health;
@@ -48,7 +50,7 @@ public class EnemyAttack : MonoBehaviour {
 			direction = direction.normalized;
 
 			//tell player health script to take damage
-			health.Damage (damage, direction);
+			health.Damage (damage, direction, knockbackDist, stunTime);
 			timer = 0f;
 		} else if (timer < attackSpeed) { //just count the time
 			timer += Time.deltaTime;

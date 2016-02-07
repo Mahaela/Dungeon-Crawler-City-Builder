@@ -8,26 +8,35 @@ public class CharacterMovement : MonoBehaviour {
 	Vector3 movement;
 	public float speed = 250f;
 
-	public float recoilForce = 20f;
+	public int recoilResist = 0;
 	
-	public float recoilTime = .3f;
-	
-	private float recoilTimer;
-	
+	public float knockbackSpeed = 1000f;
+
+	private Vector3 knockDirection;
+	private float stunTimer;
+	private float distToGo;
 	bool recoil;
+	CharacterAttack attack;
 	// Use this for initialization
 	void Start () {
 		player = GetComponent<Rigidbody2D> (); //yes
+		attack = GetComponent<CharacterAttack>();
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate()
 	{
+		
 		if (recoil) { //just count time, dont move
-			recoilTimer += Time.deltaTime;
-			if (recoilTimer >= recoilTime) {
+			stunTimer -= Time.deltaTime;
+			if (distToGo > 0) {
+				player.velocity = knockDirection.normalized * knockbackSpeed * Time.deltaTime;
+				distToGo -= knockbackSpeed * Time.deltaTime;
+			} else if (stunTimer <= 0f) {
 				recoil = false;
-				recoilTimer = 0f;
+				stunTimer = 0f;
+			} else {
+				player.velocity = new Vector3 (0f, 0f, 0f);
 			}
 		} else {
 			//actually move
@@ -40,11 +49,15 @@ public class CharacterMovement : MonoBehaviour {
 		}
 	}
 	//called if you're hit
-	public void getHit(Vector3 direction)
+	public void getHit(Vector3 direction, int recoilDist, float stunTime)
 	{
 		if (!recoil) {
-			player.AddForce (direction * recoilForce); //take a force
+			knockDirection = direction;
+			distToGo += recoilDist; //knockback this distance
+			stunTimer = stunTime;
 			recoil = true;
+
+			attack.stun (stunTime);
 		}
 	}
 
@@ -55,9 +68,6 @@ public class CharacterMovement : MonoBehaviour {
 		//move in that direction with distance = speed * time
 		movement = movement.normalized * speed * Time.deltaTime;
 		//delta time is time between each update
-		
 		player.velocity = movement;
 	}
-
-
 }

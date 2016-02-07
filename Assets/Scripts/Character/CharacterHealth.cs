@@ -6,7 +6,7 @@ public class CharacterHealth : MonoBehaviour {
 
 	public int health = 100;
 	public Slider healthBar;
-	double recoilTime;
+	public double recoilTime = 2f;
 	
 	double damageTimer;
 	CharacterMovement movement;
@@ -17,7 +17,6 @@ public class CharacterHealth : MonoBehaviour {
 		damageTimer = 0f;
 		recoil = false;
 		movement = GetComponent<CharacterMovement> (); 
-		recoilTime = 2 * movement.recoilTime;
 	}
 	
 	// Update is called once per frame
@@ -31,13 +30,13 @@ public class CharacterHealth : MonoBehaviour {
 			}
 		}
 	}
-	public void Damage(int dmg, Vector3 direction)
+	public void Damage(int dmg, Vector3 direction, int recoilDist, float stunTime)
 	{
 		if (!recoil) {
 			health -= dmg;
 			healthBar.value = health;
 			recoil = true;
-			movement.getHit(direction); //call player's movement script for knockback
+			movement.getHit(direction, recoilDist, stunTime); //call player's movement script for knockback
 			Debug.Log("Character Health = " + health);
 			checkDeath (); //has I died
 		}
