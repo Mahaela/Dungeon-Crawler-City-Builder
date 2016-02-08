@@ -123,7 +123,7 @@ public class CharacterAttack : MonoBehaviour {
                         }
                     }
                 }
-                if (hit[i].transform.gameObject.tag == "Level7Switch") {
+                else if (hit[i].transform != null && hit[i].transform.gameObject.tag == "Level7Switch") {
                     hit[i].transform.gameObject.GetComponent<Level7Switch>().run();
                 }
             }

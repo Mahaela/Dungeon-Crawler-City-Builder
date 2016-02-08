@@ -10,9 +10,9 @@ public class Level7Switch : MonoBehaviour {
     void Start()
     {
         if (top)
-            river = transform.parent.parent.parent.Find("RiverRoom").Find("Acheron").Find("RiverCenterTop");
+            river = transform.parent.parent.parent.Find("Crossing").Find("Acheron").Find("RiverCenterTop");
         else
-            river = transform.parent.parent.parent.Find("RiverRoom").Find("Acheron").Find("RiverCenterBottom");
+            river = transform.parent.parent.parent.Find("Crossing").Find("Acheron").Find("RiverCenterBottom");
     }
 
     public void run()
