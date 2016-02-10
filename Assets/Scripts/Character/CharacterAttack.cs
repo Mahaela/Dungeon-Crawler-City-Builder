@@ -71,7 +71,7 @@ public class CharacterAttack : MonoBehaviour {
 				//vertex is current tip of sword, its a currentlength in the direction of the target direction
 				vertex = origin.transform.position + target * curLength; 
 				//set other end of sword to vertex
-				swordRenderer.SetPosition (1, vertex);
+				swordRenderer.SetPosition (1, new Vector3(vertex.x, vertex.y, 0));
 			}
 			else{
 				thrust = false; //once sword reaches max range stop thrusting
@@ -84,9 +84,9 @@ public class CharacterAttack : MonoBehaviour {
 			{
 				curLength -= swordSpeed * Time.deltaTime; //lose length according to d = v*t
 				vertex = origin.transform.position + target * curLength; //update vertex, same way
-				swordRenderer.SetPosition (1, vertex); //set tip, same way
-				//if your sword loses all length, the attack is over.
-				if(curLength <= 0f)
+                swordRenderer.SetPosition(1, new Vector3(vertex.x, vertex.y, 0)); //set tip, same way
+                //if your sword loses all length, the attack is over.
+                if (curLength <= 0f)
 				{
 					attacking = false;
 					attackTimer = 0f;
@@ -98,9 +98,9 @@ public class CharacterAttack : MonoBehaviour {
 			//stay with current length, just update the sword according to movement of mouse
 			else{
 				vertex = origin.transform.position + target * curLength;
-				swordRenderer.SetPosition (1, vertex);
+                swordRenderer.SetPosition(1, new Vector3(vertex.x, vertex.y, 0));
 
-			}
+            }
 		}
 		//check hit
 		//cast a ray with curLength in same direction as sword
