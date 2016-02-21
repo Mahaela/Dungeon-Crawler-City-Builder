@@ -4,14 +4,11 @@ using System.Collections;
 public class GolemAttack : MonoBehaviour {
 
 	public float attackSpeed = 2f;
-	public int damage = 10;
+	//public int damage = 10;
 
 	public GameObject projectile;
-	//public float arrowSpeed =  10000f;
-	//public float arrowTime = 100;
 
 	private GameObject player;
-	//private CharacterHealth health;
 	private float timer;
 	private bool playerInRange;
 	

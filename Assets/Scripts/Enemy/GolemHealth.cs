@@ -17,7 +17,7 @@ public class GolemHealth : MonoBehaviour {
 		damageTimer = 0f;
 		recoil = false;
 		movement = GetComponent<EnemyMovement> (); 
-		recoilTime = 2 * movement.recoilTime;
+		recoilTime = movement.stunTime;
 	}
 	
 	// Update is called once per frame

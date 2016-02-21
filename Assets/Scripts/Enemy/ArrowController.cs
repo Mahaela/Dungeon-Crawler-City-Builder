@@ -12,6 +12,9 @@ public class ArrowController : MonoBehaviour {
 	public float arrowTime = 100;
 
 	public int damage = 10;
+	public int knockbackDist = 2;
+	public float stunTime = .5f;
+
 	void Awake()
 	{
 		player = GameObject.FindGameObjectWithTag ("Player");
@@ -34,7 +37,7 @@ public class ArrowController : MonoBehaviour {
 
 	void collide()
 	{
-		player.GetComponent<CharacterHealth> ().Damage (damage, direction);
+		player.GetComponent<CharacterHealth> ().Damage (damage, direction, knockbackDist, stunTime);
 		Destroy (this.gameObject);
 	}
 	

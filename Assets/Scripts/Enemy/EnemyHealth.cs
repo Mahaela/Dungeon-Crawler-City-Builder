@@ -17,7 +17,7 @@ public class EnemyHealth : MonoBehaviour {
 		damageTimer = 0f;
 		recoil = false;
 		movement = GetComponent<EnemyMovement> (); 
-		recoilTime = movement.recoilTime;
+		recoilTime = movement.stunTime;
 	}
 	
 	// Update is called once per frame

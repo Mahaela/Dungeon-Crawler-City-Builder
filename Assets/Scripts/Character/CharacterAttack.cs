@@ -22,6 +22,8 @@ public class CharacterAttack : MonoBehaviour {
 	private bool thrust = true;
 	private Vector3 vertex;
 
+	private float stunTimer = 0;
+
 	// initialization
 	void Awake () {
 		curLength = 0f;
@@ -42,12 +44,15 @@ public class CharacterAttack : MonoBehaviour {
 		target = cam.ScreenToWorldPoint(Input.mousePosition) - origin.transform.position;
 		target.z = 0;
 		target = target.normalized;
-
+		//check stun
+		if(stunTimer > 0)
+		{
+			stunTimer -= Time.deltaTime;
+		}
 		//if you click mouse, and you are allowed to attack
-		if (Input.GetButton ("Fire1") && timer >= attackSpeed && !attacking) {
+		else if (Input.GetButton ("Fire1") && timer >= attackSpeed && !attacking) {
 			attacking = true; //you are attacking
 			timer = 0f;
-
 			swordRenderer.enabled = true; //enables the linerenderer in order to draw line
 			//you are thrusting outwards first
 			thrust = true;
@@ -58,7 +63,13 @@ public class CharacterAttack : MonoBehaviour {
 			attackAnim();
 		}
 	}
-	
+
+	public void stun(float stunTime)
+	{
+		if (stunTimer <= 0) {
+			stunTimer = stunTime;
+		}
+	}
 	void attackAnim()
 	{
 		//sets point 0 (first end of line) to center of character
