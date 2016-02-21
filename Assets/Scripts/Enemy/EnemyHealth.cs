@@ -48,10 +48,10 @@ public class EnemyHealth : MonoBehaviour {
 	{
 		if (health <= 0) {
             //MazeRoom.dead(); //notify mazeroom that I'm dead
-            if (controller is MazeRoomController) {
+            /*if (controller is MazeRoomController) {
                 ((MazeRoomController)controller).dead();
             }
-            else if (controller is OpenRoom) {
+            else*/ if (controller is OpenRoom) {
                 ((OpenRoom)controller).dead();
             }
             Destroy(gameObject);	//I ded.	

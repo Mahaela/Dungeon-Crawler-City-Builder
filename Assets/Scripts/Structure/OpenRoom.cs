@@ -10,7 +10,8 @@ public class OpenRoom : MonoBehaviour {
 
 	public GameObject[] enemies;
 	private int enemyCount;
-    
+    private bool spawned = false;
+
 	void Start () {
         enemyCount = enemies.Length;
 	}
@@ -63,20 +64,24 @@ public class OpenRoom : MonoBehaviour {
 
     public void spawn()
 	{
-		for(int i = 0; i < enemies.Length; i++) //loop through enemy array
-		{
-			//random location in the maze room 
-			float x = Random.Range(-3f, 3f); 
-			float y = Random.Range(-3f, 3f);
-			Vector3 spawnPoint = transform.position + new Vector3(x, y, 0);
+        if (!spawned)
+        {
+            for (int i = 0; i < enemies.Length; i++) //loop through enemy array
+            {
+                //random location in the maze room 
+                float x = Random.Range(-3f, 3f);
+                float y = Random.Range(-3f, 3f);
+                Vector3 spawnPoint = transform.position + new Vector3(x, y, 0);
 
-            //set this enemy to enemy mazeroom to this one
-            enemies[i].GetComponent<EnemyHealth>().controller = this;
+                //set this enemy to enemy mazeroom to this one
+                enemies[i].GetComponent<EnemyHealth>().controller = this;
 
-            //make the enemy
-            Instantiate(enemies[i], spawnPoint, Quaternion.identity);
+                //make the enemy
+                Instantiate(enemies[i], spawnPoint, Quaternion.identity);
 
-		}
+            }
+            spawned = true;
+        }
 	}
 
     public int getEnemyCount()

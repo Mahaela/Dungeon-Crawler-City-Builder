@@ -2,7 +2,7 @@
 
 public class Level7Switch : MonoBehaviour {
     public bool top;
-    public Material activeMat;
+    public Sprite activeSprite;
 
     private Transform river;
     private bool activated = false;
@@ -21,7 +21,7 @@ public class Level7Switch : MonoBehaviour {
         {
             river.gameObject.SetActive(false);
             activated = true;
-            gameObject.GetComponent<Renderer>().material = activeMat;
+            gameObject.GetComponent<SpriteRenderer>().sprite = activeSprite;
         }
     }
 }

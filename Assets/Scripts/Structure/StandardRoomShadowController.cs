@@ -16,8 +16,10 @@ public class StandardRoomShadowController : MonoBehaviour {
 		{
 			gameObject.SetActive(false); //disable the shadow
             //init and spawn enemies
-            control.setEnemyCount();
-            control.spawn();
+            if (control != null) {
+                control.setEnemyCount();
+                control.spawn();
+            }
 		}
 	}
 }
